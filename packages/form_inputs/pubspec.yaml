@@ -1,0 +1,11 @@
+name: form_inputs
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  formz: ^0.8.0
+
