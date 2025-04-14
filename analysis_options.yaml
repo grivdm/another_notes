@@ -1,1 +1,29 @@
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language: 
+    strict-casts: true
+    strict-raw-types: true
+
+errors:
+    always_specify_types: error
+    avoid_print: warning
+    prefer_single_quotes: warning
+    prefer_const_constructors: warning
+    unnecessary_brace_in_string_interps: warning
+    always_declare_return_types: error
+
+
+linter:
+  rules:
+    require_trailing_commas: true
+    always_specify_types: true
+    always_declare_return_types: true
+    annotate_overrides: true
+    avoid_empty_else: true
+    avoid_print: true
+    avoid_web_libraries_in_flutter: true
+    prefer_single_quotes: true
+    prefer_const_constructors: true
+    sort_child_properties_last: true
+    use_key_in_widget_constructors: true
