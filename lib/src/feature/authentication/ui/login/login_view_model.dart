@@ -1,15 +1,16 @@
+import 'package:another_notes/src/feature/authentication/errors/auth_error.dart';
+import 'package:another_notes/src/feature/authentication/ui/login/login_view.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:another_notes/src/core/utils/base_view_model.dart';
 import 'package:another_notes/src/core/utils/result.dart';
 import 'package:another_notes/src/feature/authentication/repositories/auth_repository.dart';
-import 'package:another_notes/src/feature/authentication/ui/signup/signup_view.dart';
 
-class LoginViewModel extends BaseViewModel<SignupView> {
-  LoginViewModel({required AuthRepository authRepository})
+class LoginViewModel extends BaseViewModel<LoginView> {
+  LoginViewModel({required IAuthRepository authRepository})
       : _authRepository = authRepository;
 
-  final AuthRepository _authRepository;
+  final IAuthRepository _authRepository;
 
   Future<bool> logIn({required String email, required String password}) async {
     setError(null);
@@ -23,7 +24,11 @@ class LoginViewModel extends BaseViewModel<SignupView> {
       case Ok<void>():
         return true;
       case Error<void>(:final Exception error):
-        setError(error.toString());
+        if (error is AuthError) {
+          setError(error.message);
+        } else {
+          setError(error.toString());
+        }
         return false;
     }
   }

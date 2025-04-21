@@ -5,7 +5,7 @@ import 'package:another_notes/src/feature/authentication/errors/auth_error.dart'
 import 'package:another_notes/src/feature/authentication/models/auth_user.dart';
 import 'package:another_notes/src/feature/authentication/repositories/auth_repository.dart';
 
-class AuthRepositoryImpl implements AuthRepository {
+class AuthRepositoryImpl implements IAuthRepository {
   AuthRepositoryImpl({
     FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
@@ -82,7 +82,10 @@ class AuthRepositoryImpl implements AuthRepository {
       return Result<T>.error(codeToError(e.code));
     } catch (e) {
       return Result<T>.error(
-          EmailAuthError('An unknown exception occurred: ${e.toString()}'));
+        EmailAuthError(
+          'An unknown exception occurred: ${e.toString()}',
+        ),
+      );
     }
   }
 }

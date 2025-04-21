@@ -1,30 +1,26 @@
+import 'package:another_notes/src/feature/authentication/ui/login/login_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:another_notes/src/feature/authentication/models/auth_user.dart';
 import 'package:another_notes/src/feature/authentication/repositories/auth_repository.dart';
-import 'package:another_notes/src/feature/authentication/ui/signup/signup_view.dart';
 import 'package:another_notes/src/feature/home/ui/home_view.dart';
-import 'package:another_notes/src/feature/initialization/model/dependencies_container.dart';
 import 'package:another_notes/src/feature/initialization/widgets/dependencies_scope.dart';
 
-class AuthGate extends StatelessWidget {
+class AuthGate extends StatefulWidget {
   const AuthGate({super.key});
 
   @override
+  State<AuthGate> createState() => _AuthGateState();
+}
+
+class _AuthGateState extends State<AuthGate> {
+  late final IAuthRepository _authRepository =
+      DependenciesScope.of(context).authRepository;
+
+  @override
   Widget build(BuildContext context) {
-    final DependenciesContainer? dependencies = DependenciesScope.of(context);
-    final AuthRepository? authRepository = dependencies?.authRepository;
-
-    if (authRepository == null) {
-      return const Scaffold(
-        body: Center(
-          child: Text('Failed to initialize dependencies'),
-        ),
-      );
-    }
-
     return StreamBuilder<AuthUser?>(
-      stream: authRepository.authUser,
+      stream: _authRepository.authUser,
       builder: (BuildContext context, AsyncSnapshot<AuthUser?> snapshot) {
         debugPrint('AuthGate - Connection state: ${snapshot.connectionState}');
         debugPrint('AuthGate - Has data: ${snapshot.hasData}');
@@ -41,7 +37,7 @@ class AuthGate extends StatelessWidget {
         if (user != null) {
           return const HomeView();
         } else {
-          return const SignupView();
+          return const LoginView();
         }
       },
     );

@@ -13,7 +13,7 @@ class LogoutButton extends StatefulWidget {
 
 class _LogoutButtonState extends State<LogoutButton> {
   late LogoutViewModel _viewModel;
-  late final AuthRepository _authRepository =
+  late final IAuthRepository _authRepository =
       DependenciesScope.of(context).authRepository;
 
   @override

@@ -1,7 +1,7 @@
 import 'package:another_notes/src/core/utils/result.dart';
 import 'package:another_notes/src/feature/authentication/models/auth_user.dart';
 
-abstract class AuthRepository {
+abstract interface class IAuthRepository {
   Future<Result<void>> emailLogIn({
     required String email,
     required String password,

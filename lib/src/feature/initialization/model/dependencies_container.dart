@@ -12,7 +12,7 @@ class DependenciesContainer {
   });
   final FirebaseApp firebaseApp;
   final FirebaseAuth firebaseAuth;
-  final AuthRepository authRepository;
+  final IAuthRepository authRepository;
 }
 
 class DependenciesFactory {
@@ -21,7 +21,7 @@ class DependenciesFactory {
   Future<DependenciesContainer> create() async {
     final FirebaseApp firebaseApp = await Firebase.initializeApp();
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-    final AuthRepository authRepository =
+    final IAuthRepository authRepository =
         AuthRepositoryImpl(firebaseAuth: firebaseAuth);
 
     return DependenciesContainer(

@@ -6,10 +6,10 @@ import 'package:another_notes/src/feature/authentication/repositories/auth_repos
 import 'package:another_notes/src/feature/authentication/ui/logout/logout_view.dart';
 
 class LogoutViewModel extends BaseViewModel<LogoutButton> {
-  LogoutViewModel({required AuthRepository authRepository})
+  LogoutViewModel({required IAuthRepository authRepository})
       : _authReposiory = authRepository;
 
-  final AuthRepository _authReposiory;
+  final IAuthRepository _authReposiory;
   @override
   void initState(BuildContext context) {}
 

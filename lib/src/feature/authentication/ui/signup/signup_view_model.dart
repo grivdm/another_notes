@@ -7,10 +7,10 @@ import 'package:another_notes/src/feature/authentication/repositories/auth_repos
 import 'package:another_notes/src/feature/authentication/ui/signup/signup_view.dart';
 
 class SignUpViewModel extends BaseViewModel<SignupView> {
-  SignUpViewModel({required AuthRepository authRepository})
+  SignUpViewModel({required IAuthRepository authRepository})
       : _authRepository = authRepository;
 
-  final AuthRepository _authRepository;
+  final IAuthRepository _authRepository;
 
   Future<bool> signUp({required String email, required String password}) async {
     setError(null);

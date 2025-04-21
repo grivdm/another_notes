@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-abstract class BaseViewModel<W extends Widget> with ChangeNotifier {
+abstract class BaseViewModel<W extends Widget> extends ChangeNotifier {
   bool _isInitialized = false;
   bool get isInitialized => _isInitialized;
 
